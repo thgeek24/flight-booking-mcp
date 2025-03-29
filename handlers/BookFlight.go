@@ -16,16 +16,19 @@ func BookFlight(flightRepo repository.FlightRepository, bookingRepo repository.B
 			return
 		}
 
-		// Check if flight exists
-		flight, err := flightRepo.GetFlightById(request.FlightID)
-		if err != nil {
+		// Attempt to book a seat
+		if err := flightRepo.BookSeat(request.FlightID); err != nil {
+			if err.Error() == "no available seats" {
+				c.JSON(409, gin.H{"error": "no available seats"})
+				return
+			}
 			c.JSON(404, gin.H{"error": "flight not found"})
 			return
 		}
 
 		// Create booking
 		booking := models.Booking{
-			FlightID: flight.ID,
+			FlightID: request.FlightID,
 			Status:   "confirmed",
 		}
 		bookingId, err := bookingRepo.CreateBooking(booking)

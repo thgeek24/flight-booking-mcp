@@ -9,6 +9,7 @@ import (
 type FlightRepository interface {
 	GetAllFlights() ([]models.Flight, error)
 	GetFlightById(id string) (models.Flight, error)
+	BookSeat(flightId string) error
 }
 
 type InMemoryFlightRepo struct {
@@ -51,6 +52,19 @@ func (r *InMemoryFlightRepo) GetFlightById(id string) (models.Flight, error) {
 		}
 	}
 	return models.Flight{}, errors.New("flight not found")
+}
+
+func (r *InMemoryFlightRepo) BookSeat(flightId string) error {
+	for i, flight := range r.flights {
+		if flightId == flight.ID {
+			if flight.AvailableSeats > 0 {
+				r.flights[i].AvailableSeats--
+				return nil
+			}
+			return errors.New("no available seats")
+		}
+	}
+	return errors.New("flight not found")
 }
 
 func must(t time.Time, err error) time.Time {
