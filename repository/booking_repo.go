@@ -7,6 +7,7 @@ import (
 
 type BookingRepository interface {
 	CreateBooking(booking models.Booking) (string, error)
+	GetAllBookings() ([]models.Booking, error)
 }
 
 type InMemoryBookingRepo struct {
@@ -17,6 +18,10 @@ func NewInMemoryBookingRepo() *InMemoryBookingRepo {
 	return &InMemoryBookingRepo{
 		bookings: []models.Booking{},
 	}
+}
+
+func (r *InMemoryBookingRepo) GetAllBookings() ([]models.Booking, error) {
+	return r.bookings, nil
 }
 
 func (r *InMemoryBookingRepo) CreateBooking(booking models.Booking) (string, error) {

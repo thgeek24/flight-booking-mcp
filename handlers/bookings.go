@@ -6,6 +6,17 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+func GetBookings(bookingRepo repository.BookingRepository) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		bookings, err := bookingRepo.GetAllBookings()
+		if err != nil {
+			c.JSON(500, gin.H{"error": "failed to retrieve bookings"})
+			return
+		}
+		c.JSON(200, bookings)
+	}
+}
+
 func BookFlight(flightRepo repository.FlightRepository, bookingRepo repository.BookingRepository) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var request struct {

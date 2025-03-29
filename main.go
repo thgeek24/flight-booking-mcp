@@ -14,6 +14,7 @@ func main() {
 
 	r.GET("/flights", handlers.GetFlights(flightRepo))
 	r.POST("/bookings", handlers.BookFlight(flightRepo, bookingRepo))
+	r.GET("/bookings", handlers.GetBookings(bookingRepo))
 
 	err := r.Run(":8080")
 	if err != nil {
