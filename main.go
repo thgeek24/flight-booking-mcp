@@ -8,12 +8,12 @@ import (
 
 func main() {
 	flightRepo := repository.NewInMemoryFlightRepo()
-	bookRepo := repository.NewInMemoryBookingRepo()
+	bookingRepo := repository.NewInMemoryBookingRepo()
 
 	r := gin.Default()
 
 	r.GET("/flights", handlers.GetFlights(flightRepo))
-	r.POST("/bookings", handlers.BookFlight(flightRepo, bookRepo))
+	r.POST("/bookings", handlers.BookFlight(flightRepo, bookingRepo))
 
 	err := r.Run(":8080")
 	if err != nil {

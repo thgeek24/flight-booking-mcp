@@ -28,14 +28,14 @@ func BookFlight(flightRepo repository.FlightRepository, bookingRepo repository.B
 			FlightID: flight.ID,
 			Status:   "confirmed",
 		}
-		bookingID, err := bookingRepo.CreateBooking(booking)
+		bookingId, err := bookingRepo.CreateBooking(booking)
 		if err != nil {
 			c.JSON(500, gin.H{"error": "failed to book flight"})
 			return
 		}
 
 		c.JSON(201, gin.H{
-			"bookingId": bookingID,
+			"bookingId": bookingId,
 			"status":    "confirmed",
 		})
 	}
