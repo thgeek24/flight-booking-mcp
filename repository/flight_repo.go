@@ -21,22 +21,30 @@ func NewInMemoryFlightRepo() *InMemoryFlightRepo {
 		flights: []models.Flight{
 			{
 				ID:             "1",
-				Departure:      "NYC",
-				Destination:    "LAX",
-				DepartureTime:  must(time.Parse(time.RFC3339, "2025-03-29T10:00:00Z")),
-				ArrivalTime:    must(time.Parse(time.RFC3339, "2023-03-29T13:00:00Z")),
+				Departure:      "New York",
+				Destination:    "San Francisco",
+				DepartureTime:  must(time.Parse(time.RFC3339, "2025-03-29T10:10:00Z")),
+				ArrivalTime:    must(time.Parse(time.RFC3339, "2025-03-29T13:15:00Z")),
 				Price:          299.99,
 				AvailableSeats: 5,
 			},
 			{
 				ID:             "2",
-				Departure:      "SFO",
-				Destination:    "JFK",
-				DepartureTime:  must(time.Parse(time.RFC3339, "2023-03-30T09:00:00Z")),
-				ArrivalTime:    must(time.Parse(time.RFC3339, "2023-03-30T17:00:00Z")),
+				Departure:      "San Francisco",
+				Destination:    "New York",
+				DepartureTime:  must(time.Parse(time.RFC3339, "2025-03-30T09:15:00Z")),
+				ArrivalTime:    must(time.Parse(time.RFC3339, "2025-03-30T17:00:00Z")),
 				Price:          399.99,
 				AvailableSeats: 10,
 			},
+			{
+				ID:             "3",
+				Departure:      "Los Angeles",
+				Destination:    "Chicago",
+				DepartureTime:  must(time.Parse(time.RFC3339, "2025-03-31T08:00:00Z")),
+				ArrivalTime:    must(time.Parse(time.RFC3339, "2025-03-31T14:10:00Z")),
+				Price:          349.99,
+				AvailableSeats: 8},
 		},
 	}
 }
