@@ -1,4 +1,3 @@
-```markdown
 # Flight Booking Service
 
 A RESTful API service for flight booking management built with Go and Gin framework.
@@ -51,4 +50,3 @@ The server will start at `http://localhost:8080`
 - Go 1.x
 - Gin Web Framework
 - CORS middleware
-```
